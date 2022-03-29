@@ -5,12 +5,14 @@
 package it.polito.tdp.lab04;
 
 import java.net.URL;
+import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.lab04.model.Corso;
 import it.polito.tdp.lab04.model.Model;
+import it.polito.tdp.lab04.model.Studente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,7 +89,25 @@ public class FXMLController {
     }
 
     @FXML
-    void doValidate(ActionEvent event) {
+    void doValidate(ActionEvent event) throws UnexpectedException {
+    	String i = this.txtFieldMatricola.getText();
+    	Integer matricola;
+    	try {
+    		
+    		matricola = Integer.parseInt(i);
+    		
+    	} catch(NumberFormatException nfe) {
+    		nfe.printStackTrace();
+    		this.txtFieldMatricola.setText("Errore nella matricola. Inserire solo valori numerici");
+    		return;
+    	}
+    	Studente s = this.model.getStudenteByMatricola(matricola);
+    	if(s!=null) {
+    		this.txtFieldCognome.setText(s.getCognome());
+    		this.txtFieldNome.setText(s.getNome());
+    	} else {
+    		throw new UnexpectedException("Errore imprevisto");
+    	}
 
     }
     
