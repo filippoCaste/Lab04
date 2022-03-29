@@ -100,7 +100,10 @@ public class CorsoDAO {
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
 	public void getStudentiIscrittiAlCorso(Corso corso) {
-		// TODO
+		String sql = "SELECT s.matricola, s.cognome, s.nome, s.CDS "
+				+ "FROM studente s, iscrizione i, corso c "
+				+ "WHERE s.matricola=i.matricola AND i.codins=c.codins AND c.codins= ? ";
+		
 	}
 
 	/**
