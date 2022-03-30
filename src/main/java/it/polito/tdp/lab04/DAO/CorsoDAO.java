@@ -153,6 +153,8 @@ public class CorsoDAO {
 			st.setInt(1, studente.getMatricola());
 			st.setString(2, corso.getCodins());
 			
+			st.execute();
+			
 			st.close();
 			conn.close();
 			return true;

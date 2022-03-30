@@ -41,7 +41,7 @@ public class Model {
 	}
 	
 	public boolean inserisciStudenteACorso(Studente studente, Corso corso) {
-		if(this.getCorsiByStudente(studente).contains(this.getCorsoByNome(corso.getNome())))
+		if(!this.getCorsiByStudente(studente).contains(this.getCorsoByNome(corso.getNome())))
 			return this.corsoDao.inserisciNuovoIscritto(studente, corso);
 		else
 			return false;
